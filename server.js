@@ -9,13 +9,15 @@ const { animals } = require('./data/animals');
 
 // tell heroku we're using port 3001 instead of the default of 80
 const PORT = process.env.PORT || 3001;
-
 // instantiate a server
 const app = express();
+
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+// make CSS and other files in the 'public' folder available
+app.use(express.static('public'));
 
 // accepts a query object and an array of animals
 function filterByQuery(query, animalsArray) {
@@ -143,6 +145,21 @@ app.post('/api/animals', (req, res) => {
         // the incoming content
         res.json(animal);
     }
+  });
+
+// add route to run index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+// add route for animals page
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+  });
+
+// add route for the zookeepers page
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
   });
 
 // make the server listen

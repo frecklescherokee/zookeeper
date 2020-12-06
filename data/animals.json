@@ -117,6 +117,18 @@
         "hungry"
       ],
       "id": "11"
+    },
+    {
+      "name": "Mandingo",
+      "species": "human",
+      "diet": "carnivore",
+      "personalityTraits": [
+        "hungry",
+        "zany",
+        "anxious",
+        "loving"
+      ],
+      "id": "12"
     }
   ]
 }
